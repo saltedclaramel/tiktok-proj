@@ -4,14 +4,14 @@
     display: grid;
     row-gap: 2ch;
 }
-button:hover {
+.keyboard-button:hover {
     background-color: #de8c9dd3;
     border: none;
 }
 
 /* mobile view */
 @media (max-width: 800px){
-    button {
+    .keyboard-button {
         margin: 0 2vw;
         font-size: calc(10px + 1vmin);
         height: 6vw;
@@ -24,7 +24,7 @@ button:hover {
 
 /* desktop */
 @media (min-width: 801px) {
-    button {
+    .keyboard-button {
         margin: 0 2vw;
         font-size: calc(10px + 2vmin);
         height: 4vw;

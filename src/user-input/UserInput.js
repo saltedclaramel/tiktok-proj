@@ -19,21 +19,21 @@ class UserInput extends Component {
           <div className='keyboard'>
                 <div>
                     { keyboardKeysRow1.map((keyboardKey) =>
-                        <button>
+                        <button className='keyboard-button'>
                             { keyboardKey }
                         </button>
                     )}
                 </div>
                 <div>
                     { keyboardKeysRow2.map((keyboardKey) =>
-                        <button>
+                        <button className='keyboard-button'>
                             { keyboardKey }
                         </button>
                     )}
                 </div>
                 <div>
                     { keyboardKeysRow3.map((keyboardKey) =>
-                        <button>
+                        <button className='keyboard-button'>
                             { keyboardKey }
                         </button>
                     )}
