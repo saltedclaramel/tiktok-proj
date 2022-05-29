@@ -2,7 +2,7 @@ import { React, Component } from 'react';
 import './App.css';
 import Hangman from './hangman/Hangman';
 import Word from './word/Word';
-import UserInput from './user-input/UserInput';
+// import UserInput from './user-input/UserInput';
 import PlayBtn from './resources/play.png'
 class App extends Component{
   constructor(props){
@@ -10,7 +10,7 @@ class App extends Component{
     this.state = {
       introPage: true,
       selectedWord: "",
-      error: 0
+      errorCount: 0
     };
     this.handlePlay = this.handlePlay.bind(this);
   }
@@ -45,7 +45,7 @@ class App extends Component{
   render(){
     const onIntroPage = this.state.introPage;
     let pageShown;
-    if (onIntroPage){
+    if (onIntroPage === true){
       pageShown = <div className="intro-page">
                     <h1 style={{letterSpacing: 20}}>
                       HANGMAN
@@ -55,18 +55,24 @@ class App extends Component{
                       <img src={ PlayBtn } alt="play button" width={'40%'} onClick={ this.handlePlay }/>
                     </button>
                   </div>
-    } else {
-      pageShown = <div className="game-page">
-                    <div className='hangman'>
-                      <Hangman errorCount={this.state.error}/>
+    } else{
+      if (this.state.errorCount < 6){
+        pageShown = <div className="game-page">
+                      <div className='hangman'>
+                        <Hangman errorCount={this.state.errorCount}/>
+                      </div>
+                      <div className='word'>
+                        <Word selectedWord={this.state.selectedWord} errorCount={this.state.errorCount}/>
+                        {/* <UserInput errorCount={this.state.errorCount}/> */}
+                      </div>
+                      {/* <div className='user-input'>
+                        <UserInput/>
+                      </div> */}
                     </div>
-                    <div className='word'>
-                      <Word selectedWord={this.state.selectedWord}/>
-                    </div>
-                    <div className='user-input'>
-                      <UserInput/>
-                    </div>
-                  </div>
+      }
+      else{
+        pageShown = <h1 style={{letterSpacing: 20}}> YOU LOST 😕 </h1>
+      }
     }
     
     return (

@@ -1,3 +1,45 @@
+.general-layout{
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+}
 .word{
     flex-direction: row;
+}
+
+/* INPUT */
+/* general keyboard layout */
+.keyboard{
+    grid-template-rows: 1fr 1fr 1fr;
+    display: grid;
+    row-gap: 2ch;
+}
+.keyboard-button:hover {
+    background-color: #de8c9dd3;
+    border: none;
+}
+
+/* mobile view */
+@media (max-width: 800px){
+    .keyboard-button {
+        margin: 0 2vw;
+        font-size: calc(10px + 1vmin);
+        height: 6vw;
+        width: 6vw;
+        border: outset 4px #de8c9d;
+        border-radius: 12%;
+        background-color: #de8c9d;
+    }
+}
+
+/* desktop */
+@media (min-width: 801px) {
+    .keyboard-button {
+        margin: 0 2vw;
+        font-size: calc(10px + 2vmin);
+        height: 4vw;
+        width: 4vw;
+        border: outset 4px #de8c9d;
+        border-radius: 12%;
+        background-color: #de8c9d;
+    }
 }

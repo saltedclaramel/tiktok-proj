@@ -3,9 +3,9 @@ import { React, Component } from 'react';
 class Letter extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            visible: false
-        }
+        // this.state = {
+        //     visible: false
+        // }
         
     }
     componentDidMount(){
@@ -15,12 +15,12 @@ class Letter extends Component{
     }
     render(){
         const letter = this.props.letter
-        if (this.state.visible === false){
+        if (this.props.visible === false){
             return(
                 <div>___ &nbsp;&nbsp;</div>
             )
         }
-        else{
+        if (this.props.visible === true){
             return(
                 <div>
                     <u>

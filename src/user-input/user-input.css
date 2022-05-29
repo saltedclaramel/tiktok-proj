@@ -1,4 +1,4 @@
-/* general keyboard layout */
+general keyboard layout
 .keyboard{
     grid-template-rows: 1fr 1fr 1fr;
     display: grid;
