@@ -10,6 +10,7 @@ class App extends Component{
     this.state = {
       introPage: true,
       selectedWord: "",
+      error: 0
     };
     this.handlePlay = this.handlePlay.bind(this);
   }
@@ -46,7 +47,7 @@ class App extends Component{
     let pageShown;
     if (onIntroPage){
       pageShown = <div className="intro-page">
-                    <h1>
+                    <h1 style={{letterSpacing: 20}}>
                       HANGMAN
                     </h1>
                     <br/>
@@ -57,7 +58,7 @@ class App extends Component{
     } else {
       pageShown = <div className="game-page">
                     <div className='hangman'>
-                      <Hangman/>
+                      <Hangman errorCount={this.state.error}/>
                     </div>
                     <div className='word'>
                       <Word selectedWord={this.state.selectedWord}/>
