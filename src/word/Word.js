@@ -7,7 +7,8 @@ class Word extends Component {
         super(props);
         this.state = {
             visibilityDict: {},
-            selectedDone: false
+            selectedDone: false,
+            incorrectList: []
         }
         this.handleVisibility = this.handleVisibility.bind(this)
     }
@@ -43,15 +44,17 @@ class Word extends Component {
                 }
             }
             )
-            console.log(this.state.visibilityDict)
+            // console.log(this.state.visibilityDict)
         }
         else{
-            this.props.updateErrorCount()
+            this.setState(prevState => ({
+                incorrectList: [...prevState.incorrectList, letter]
+            }))
+            // console.log(this.state.incorrectList)
+            this.props.updateErrorCount();
+
         }
     }
-    // updateErrorCount(){
-        
-    // }
     render() {
         const keyboardKeysRow1 = [
             'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'
@@ -83,24 +86,39 @@ class Word extends Component {
                     </div>
                     <div className='keyboard'>
                         <div>
-                            { keyboardKeysRow1.map((keyboardKey, index) =>
-                                <button className='keyboard-button' onClick={() => this.handleVisibility(keyboardKeysRow1[index])}>
+                            { keyboardKeysRow1.map((keyboardKey) => {
+                                if (keyboardKey in this.state.incorrectList)
+                                    return <button className='keyboard-button' disabled>
+                                        { keyboardKey}
+                                    </button>
+                                return <button className='keyboard-button' onClick={() => this.handleVisibility(keyboardKey)}>
                                     { keyboardKey }
                                 </button>
+                            }
                             )}
                         </div>
                         <div>
-                            { keyboardKeysRow2.map((keyboardKey, index) =>
-                                <button className='keyboard-button' onClick={() => this.handleVisibility(keyboardKeysRow2[index])}>
+                            { keyboardKeysRow2.map((keyboardKey) => {
+                                if (keyboardKey in this.state.incorrectList)
+                                    return <button className='keyboard-button' disabled>
+                                        { keyboardKey}
+                                    </button>
+                                return <button className='keyboard-button' onClick={() => this.handleVisibility(keyboardKey)}>
                                     { keyboardKey }
                                 </button>
+                            }
                             )}
                         </div>
                         <div>
-                            { keyboardKeysRow3.map((keyboardKey, index) =>
-                                <button className='keyboard-button' onClick={() => this.handleVisibility(keyboardKeysRow3[index])}>
+                            { keyboardKeysRow3.map((keyboardKey) => {
+                                if (keyboardKey in this.state.incorrectList)
+                                    return <button className='keyboard-button' disabled>
+                                        { keyboardKey}
+                                    </button>
+                                return <button className='keyboard-button' onClick={() => this.handleVisibility(keyboardKey)}>
                                     { keyboardKey }
                                 </button>
+                            }
                             )}
                         </div>
                         
