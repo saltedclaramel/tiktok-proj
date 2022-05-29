@@ -14,6 +14,7 @@ class App extends Component{
     };
     this.handlePlay = this.handlePlay.bind(this);
     this.handleAllCorrect = this.handleAllCorrect.bind(this);
+    this.updateErrorCount = this.updateErrorCount.bind(this);
   }
   handlePlay(){
     const wordlist = [
@@ -44,9 +45,13 @@ class App extends Component{
     })
   }
   handleAllCorrect = () => {
-    console.log('in function')
     this.setState({
       correct: true
+    })
+  }
+  updateErrorCount = () => {
+    this.setState({
+      errorCount: this.state.errorCount + 1
     })
   }
   render(){
@@ -75,7 +80,8 @@ class App extends Component{
                           <Hangman errorCount={this.state.errorCount}/>
                         </div>
                         <div className='word'>
-                          <Word selectedWord={this.state.selectedWord} errorCount={this.state.errorCount} correct={this.state.correct} onAllCorrect={this.handleAllCorrect}/>
+                          <Word selectedWord={this.state.selectedWord} errorCount={this.state.errorCount} updateErrorCount={this.updateErrorCount}
+                          correct={this.state.correct} onAllCorrect={this.handleAllCorrect}/>
                         </div>
                       </div>
         }

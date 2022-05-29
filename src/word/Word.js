@@ -40,17 +40,18 @@ class Word extends Component {
                 )
                 if (allTrue){
                     this.props.onAllCorrect()
-                    console.log(allTrue)
                 }
             }
             )
             console.log(this.state.visibilityDict)
-            // const allTrue = Object.values(this.state.visibilityDict).every(
-            //     value => value === true
-            // )
-            // console.log(allTrue)
+        }
+        else{
+            this.props.updateErrorCount()
         }
     }
+    // updateErrorCount(){
+        
+    // }
     render() {
         const keyboardKeysRow1 = [
             'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'
