@@ -1,13 +1,13 @@
 import { React, Component } from 'react';
 
 class Letter extends Component{
-    constructor(props){
-        super(props);
+    // constructor(props){
+    //     super(props);
         // this.state = {
         //     visible: false
         // }
         
-    }
+    // }
     componentDidMount(){
         this.setState({
             visible: this.props.visible[this.props.letter]

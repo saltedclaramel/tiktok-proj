@@ -17,6 +17,8 @@ class Word extends Component {
         for (const letter in selectedWordList){
             if (selectedWordList[letter] in visibilityDict)
                 continue
+            else if (selectedWordList[letter] === " ")
+                visibilityDict[selectedWordList[letter]] = true
             else
                 visibilityDict[selectedWordList[letter]] = false
         }
@@ -32,8 +34,21 @@ class Word extends Component {
                     ...prevState.visibilityDict,
                     [letter]: true
                 }
-            }))
+            }), () => {
+                const allTrue = Object.values(this.state.visibilityDict).every(
+                    value => value === true
+                )
+                if (allTrue){
+                    this.props.onAllCorrect()
+                    console.log(allTrue)
+                }
+            }
+            )
             console.log(this.state.visibilityDict)
+            // const allTrue = Object.values(this.state.visibilityDict).every(
+            //     value => value === true
+            // )
+            // console.log(allTrue)
         }
     }
     render() {

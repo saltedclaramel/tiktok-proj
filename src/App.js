@@ -2,7 +2,6 @@ import { React, Component } from 'react';
 import './App.css';
 import Hangman from './hangman/Hangman';
 import Word from './word/Word';
-// import UserInput from './user-input/UserInput';
 import PlayBtn from './resources/play.png'
 class App extends Component{
   constructor(props){
@@ -10,9 +9,11 @@ class App extends Component{
     this.state = {
       introPage: true,
       selectedWord: "",
-      errorCount: 0
+      errorCount: 0,
+      correct: false
     };
     this.handlePlay = this.handlePlay.bind(this);
+    this.handleAllCorrect = this.handleAllCorrect.bind(this);
   }
   handlePlay(){
     const wordlist = [
@@ -42,6 +43,12 @@ class App extends Component{
         introPage: false
     })
   }
+  handleAllCorrect = () => {
+    console.log('in function')
+    this.setState({
+      correct: true
+    })
+  }
   render(){
     const onIntroPage = this.state.introPage;
     let pageShown;
@@ -56,22 +63,27 @@ class App extends Component{
                     </button>
                   </div>
     } else{
-      if (this.state.errorCount < 6){
-        pageShown = <div className="game-page">
-                      <div className='hangman'>
-                        <Hangman errorCount={this.state.errorCount}/>
-                      </div>
-                      <div className='word'>
-                        <Word selectedWord={this.state.selectedWord} errorCount={this.state.errorCount}/>
-                        {/* <UserInput errorCount={this.state.errorCount}/> */}
-                      </div>
-                      {/* <div className='user-input'>
-                        <UserInput/>
-                      </div> */}
-                    </div>
+      if (this.state.correct === true){
+        pageShown = <div className="intro-page">
+          <h1 style={{letterSpacing: 20}}> CONGRATULATIONS 😃 </h1>
+        </div>
       }
       else{
-        pageShown = <h1 style={{letterSpacing: 20}}> YOU LOST 😕 </h1>
+        if (this.state.errorCount < 6){
+          pageShown = <div className="game-page">
+                        <div className='hangman'>
+                          <Hangman errorCount={this.state.errorCount}/>
+                        </div>
+                        <div className='word'>
+                          <Word selectedWord={this.state.selectedWord} errorCount={this.state.errorCount} correct={this.state.correct} onAllCorrect={this.handleAllCorrect}/>
+                        </div>
+                      </div>
+        }
+        else{
+          pageShown = <div className="intro-page">
+            <h1 style={{letterSpacing: 20}}> YOU LOST 😕 </h1>
+          </div>
+        }
       }
     }
     
